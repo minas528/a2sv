@@ -27,7 +27,7 @@ int main() {
     std::cout<<"Please Enter the number of rows\n"<<std::endl;
     int size ;
     std::cin>>size;
-//    DrawRightAngledTriangle(size);
+    DrawRightAngledTriangle(size);
     DrawIsoslesTraingle(size);
     return 0;
 }
