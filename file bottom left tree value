@@ -1,0 +1,47 @@
+#Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+class Solution:
+            
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        nodes_by_level = [root]
+        #print(nodes_by_level)
+        result = []
+        while root and nodes_by_level:
+            next_level_nodes = []
+            current_node_values = []
+           # print(result)
+
+            for node in nodes_by_level:
+                current_node_values.append(node.val)
+
+                if node.left:
+                    next_level_nodes.append(node.left)
+                if node.right:
+                    next_level_nodes.append(node.right)
+            #print(current_node_values)
+            if current_node_values:
+                result.append(current_node_values[0])
+            nodes_by_level = next_level_nodes
+
+
+        return result[-1]
+     
+# Test cases
+
+node1 = TreeNode(32)
+node2 = TreeNode(54)
+node3 = TreeNode(52)
+node4 = TreeNode(6)
+node5 = TreeNode(99)
+
+node1.left = node4
+node1.right = node5
+node5.left = node2
+node2.left = node3
+
+sol = Solution()
+print(sol.findBottomLeftValue(node1))
