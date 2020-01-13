@@ -1,0 +1,50 @@
+def main():
+    num = int(input())
+    lists = []
+    newList =[]
+    for i in range(num):
+        lists.append(str(input()))
+    for i in range(len(lists)):
+        string =""
+        for j in range(len(lists[i])):
+            if "?" == lists[i][j]:
+               # print(string)
+                if j == 0 and len(lists[i])==1:
+                    string += "a"
+                elif j == 0 and len(lists[i])>1:
+                    if lists[i][j+1] in "bc?":
+                        string+="a"
+                    elif lists[i][j+1] in "ac?":
+                        string+="b"
+                    else:
+                        print("hey")
+                        string+="c"
+                elif j== len(lists[i])-1:
+                    if string[-1] in "bc?":
+                        string+="a"
+                    elif string[-1] in "ac?":
+                        string+="b"
+                    else:
+                        string+="c"
+                else:
+                    if string[-1] in "bc?" and lists[i][j+1] in "bc?":
+                        string+="a"
+                    elif string[-1] in "ac?" and lists[i][j+1] in "ac?":
+                        string+="b"
+                    else:
+                        string+="c"
+            elif lists[i][j]!="j":
+                string+=lists[i][j]
+        newList.append(string)
+    for list in newList:
+        nn = False
+        for j in range(len(list)-1):
+            if list[j] == list[j+1]:
+                nn = True
+        if nn == True:
+            print("-1")
+        else:
+            print(list)
+                        
+if __name__=="__main__":
+    main()

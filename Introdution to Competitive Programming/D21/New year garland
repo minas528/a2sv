@@ -1,0 +1,19 @@
+def main(lst, count):
+    sol = []
+    for i in range(count):
+        lst[i].sort()
+        if lst[i][0] + lst[i][1] +1 >= lst[i][2]:
+            sol.append("Yes")
+        else:
+            sol.append("No")
+    for ans in sol:
+        print(ans)
+ 
+ 
+if __name__ == '__main__':
+    count = int(input())
+    lst =[]
+    for i in range(count):
+        lst.append(list(map(int, input().split(" "))))
+    # print(lst[0])
+    main(lst,count)
