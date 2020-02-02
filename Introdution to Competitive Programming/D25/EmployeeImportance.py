@@ -1,7 +1,7 @@
-"""
+
 # Employee info
 class Employee:
-    def __init__(self, id: int, importance: int, subordinates: List[int]):
+    def __init__(self, id: int, importance: int, subordinates):
         # It's the unique id of each node.
         # unique id of this employee
         self.id = id
@@ -9,33 +9,35 @@ class Employee:
         self.importance = importance
         # the id of direct subordinates
         self.subordinates = subordinates
-"""
+
 class Solution:
-    def getImportance(self, employees: List['Employee'], id: int) -> int:
-        employee_importance = {}
-        adj_list = {}
-        
-        for employee_details in employees:
-            id1, importance, subordinates = employee_details.id, employee_details.importance, employee_details.subordinates
-            employee_importance[id1] = importance
-            
-            if adj_list.get(id1) is None:
-                adj_list[id1] = []
-                
-            adj_list[id1] = subordinates
-            
-        importance = 0
-        
-        def dfs(adj_list, id):
-            nonlocal importance
-            if adj_list.get(id) is None:
+    def getImportance(self, employees, id) :
+        employee_importance_dict = {}
+        neighbor_dict = {}
+
+        for employee in employees:
+            id1, importance, subbordinate = employee.id, employee.importance, employee.subordinates
+            employee_importance_dict[id1] = importance
+
+            if subbordinate == None:
+                neighbor_dict[id1] = []
+            neighbor_dict[id1] = subbordinate
+        impoertance = 0
+
+        def dfs(nbr_list, id):
+            nonlocal impoertance
+            if neighbor_dict[id] == None:
                 return
-            
-            for neighbor in adj_list[id]:
-                dfs(adj_list, neighbor)
-                
-            importance += employee_importance[id]
-            # print(employee_importance[id])
-        
-        dfs(adj_list, id)
-        return importance
+            for i in nbr_list[id]:
+                dfs(nbr_list, i)
+            impoertance += employee_importance_dict[id]
+
+        dfs(neighbor_dict, id)
+        return impoertance
+
+if __name__ == '__main__':
+    emp = Employee(1,5,[2,3])
+    emp2 = Employee(2,3,[])
+    emp4 = Employee(3,3,[])
+    sol = Solution()
+    print(sol.getImportance([emp,emp2,emp4],1))

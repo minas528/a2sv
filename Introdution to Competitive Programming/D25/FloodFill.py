@@ -1,23 +1,33 @@
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+    def floodFill(self, image, sr, sc, newColor):
         if image == [] or image == [[]]:
             return image
-        
-        R= len(image)
-        C= len(image[0])
-                    
+
+        col = len(image) - 1
+        row = len(image[0]) - 1
+        nbrs = [[1, 0], [-1, 0], [0, -1], [0, 1]]
         visited = set()
-        visited.add((sr,sc))
-        color= image[sr][sc]
-        
-        def paint(sr,sc):
-            image[sr][sc]= newColor
-            
-            for nr,nc in ((sr+1,sc), (sr-1,sc), (sr,sc+1), (sr,sc-1)):
-                if (0 <= nr < R and 0 <=nc < C):
-                    if image[nr][nc] == color and (nr,nc) not in visited:
-                        visited.add((nr,nc))
-                        paint(nr,nc)
-        paint(sr,sc)
-        
+        color = image[sr][sc]
+
+        def isValid(i, j):
+            if 0 <= i <= col and 0 <= j <= row  and\
+                    (i, j) not in visited and\
+                    image[i][j] == color:
+                return True
+            return False
+
+        def dfs(sr, sc):
+            image[sr][sc] = newColor
+            visited.add((sr, sc))
+            for i in nbrs:
+                cr = sr + i[0]
+                cc = sc + i[1]
+                if isValid(cr, cc)  :
+                    print("got here", cr, cc)
+                    dfs(cr, cc)
+
+        dfs(sr, sc)
         return image
+if __name__ == '__main__':
+    sol = Solution()
+    print(sol.floodFill([[1,1,1],[1,1,0],[1,0,1]],1,1,2))

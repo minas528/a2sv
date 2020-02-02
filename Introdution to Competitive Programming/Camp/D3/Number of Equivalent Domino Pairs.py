@@ -1,5 +1,5 @@
 class Solution:
-    def numEquivDominoPairs(self, dominoes: List[List[int]]) -> int:
+    def numEquivDominoPairs(self, dominoes) :
         data = {}
         for each in dominoes:
             if (each[0] > each[1]):
@@ -18,3 +18,9 @@ class Solution:
                 tmp = (v * (v - 1) // 2)
             count += tmp
         return count
+if __name__ == '__main__':
+    list = []
+    import random
+    for i in range(10):
+        list.append(random.randint(1,10))
+    print(list)
