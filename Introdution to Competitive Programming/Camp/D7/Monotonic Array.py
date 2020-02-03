@@ -15,8 +15,6 @@ class Solution:
         return True
 
 if __name__ == '__main__':
-    # sol = Solution()
-    # sol.isMonotonic()
-    a = 3
-    b = 2
-    print(a | b)
+    sol = Solution()
+    sol.isMonotonic()
+   
