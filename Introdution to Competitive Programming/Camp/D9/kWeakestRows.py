@@ -5,6 +5,7 @@ class Solution:
             dict_[i]=sum(mat[i])
         # print(dict_)
         sorted_dict = sorted(dict_.items(),key=lambda x:x[1])
+        
         res = list()
         for i in range(k):
             res.append(sorted_dict[i][0])

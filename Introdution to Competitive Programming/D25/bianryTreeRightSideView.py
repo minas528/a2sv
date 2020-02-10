@@ -49,7 +49,7 @@ if __name__=="__main__":
     q.append(59)
     q.append(49)
     q.append(20)
-
+#[6,1,null,null,3,2,5,null,null,4]
     q.pop(0)
     print(q[0])
     print(q )
