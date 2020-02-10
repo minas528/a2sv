@@ -3,7 +3,7 @@ class Solution:
         self.res = False
         self.visited = set()
 
-    def canReach(self, arr: List[int], start: int) -> bool:
+    def canReach(self, arr: list[int], start: int) -> bool:
 
         def isValid(i, visited):
             if (0 <= i <= len(arr) - 1 and i not in visited):

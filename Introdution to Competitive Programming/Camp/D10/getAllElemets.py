@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def __init__(self):
@@ -16,7 +16,7 @@ class Solution:
             self.traverse(root1.right)
         # print(self.arr)
 
-    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> list[int]:
         if root1:
             self.traverse(root1)
         if root2:
