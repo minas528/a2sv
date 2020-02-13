@@ -1,3 +1,4 @@
+import collections
 class TrieNode:
     def __init__(self):
         self.child = collections.defaultdict(TrieNode)
