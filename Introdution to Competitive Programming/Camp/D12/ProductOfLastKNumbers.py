@@ -5,20 +5,21 @@ class ProductOfNumbers:
 
     def add(self, num: int) -> None:
         if num:
-            if self.lst[-1] == 0:
-                self.lst.append(num)
-            else:
-                self.lst.append(self.lst[-1]*num)
+            self.lst.append(self.lst[-1] * num)
         else:
-            self.lst.append(0)
+            self.lst = [1]
 
     def getProduct(self, k: int) -> int:
-        if 0 in self.lst[len(self.lst)-k:]:
+        if len(self.lst) <= k:
             return 0
         else:
-            if self.lst[len(self.lst)-k-1] == 0:
-                return self.lst[-1]
-            return self.lst[-1]//self.lst[len(self.lst)-k-1]
+            return self.lst[-1] // self.lst[len(self.lst) - k - 1]
+
+
+# Your ProductOfNumbers object will be instantiated and called as such:
+# obj = ProductOfNumbers()
+# obj.add(num)
+# param_2 = obj.getProduct(k)
 
 
 # Your ProductOfNumbers object will be instantiated and called as such:
