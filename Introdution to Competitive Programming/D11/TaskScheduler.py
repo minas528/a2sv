@@ -1,30 +1,28 @@
-class Solution(object):
-    def leastInterval(self, tasks, n):
-        """
-        :type tasks: List[str]
-        :type n: int
-        :rtype: int
-        """
-        if len( tasks ) <=1 or n==0:
-            return len( tasks )
-        d = dict()
-        for i in tasks:
-            if i in d:
-                d[i]+=1
+class Solution:
+    def leastInterval(self, tasks, n: int) -> int:
+        if len(tasks) <= 1 or n == 0:
+            return len(tasks)
+        frequency_map = dict()
+        for task in tasks:
+            if task in frequency_map:
+                frequency_map[task] += 1
             else:
-                d[i] = 1
-        
-        vals = d.values()
-        vals.sort(reverse=True)
-        if len( tasks )/ ( n + 1 ) >= vals[0]:
-            return len( tasks )
+                frequency_map[task] = 1
+        value_list = list(frequency_map.values())
+        value_list.sort(reverse=True)
+        if len(tasks) / (n + 1) >= value_list[0]:
+            return len(tasks)
         else:
             x = 0
-            for i in xrange( len( vals ) ):
-                if vals[i] == vals[0]:
-                    x+=1
+            for i in range(len(value_list)):
+                if value_list[i] == value_list[0]:
+                    x += 1
                 else:
                     break
-            print  ( vals[0]-1 ),( n + 1) , x
-            return ( vals[0]-1 )*( n + 1) + x
-        
+            return (value_list[0] - 1) * (n + 1) + x
+
+
+if __name__ == '__main__':
+    sol = Solution()
+    answer = sol.leastInterval(["A", "A", "A", "B", "B", "B"], 2)
+    print(answer)
