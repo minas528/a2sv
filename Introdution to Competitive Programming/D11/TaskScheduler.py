@@ -13,13 +13,13 @@ class Solution:
         if len(tasks) / (n + 1) >= value_list[0]:
             return len(tasks)
         else:
-            x = 0
+            max_cont = 0
             for i in range(len(value_list)):
                 if value_list[i] == value_list[0]:
-                    x += 1
+                    max_cont += 1
                 else:
                     break
-            return (value_list[0] - 1) * (n + 1) + x
+            return (value_list[0] - 1) * (n + 1) + max_cont
 
 
 if __name__ == '__main__':
