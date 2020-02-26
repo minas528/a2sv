@@ -1,5 +1,7 @@
 from typing import List
 import collections
+
+
 # class Solution:
 #     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
 #         n, m = len(grid), len(grid[0])
@@ -23,7 +25,8 @@ import collections
 
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        m,n = len(grid),len(grid[0])
+        m, n = len(grid), len(grid[0])
+
         def dfs(ith_index: int, jth_index: int) -> int:
             print(grid[ith_index][jth_index])
             if 0 <= ith_index <= m and 0 <= jth_index < n and grid[ith_index][jth_index]:
@@ -33,6 +36,7 @@ class Solution:
                        dfs(ith_index, jth_index + 1) + \
                        dfs(ith_index, jth_index - 1)
             return 0
+
         # def dfs(i, j):
         #     if 0 <= i < n and 0 <= j < m and grid[i][j]:
         #         # mark as visited
