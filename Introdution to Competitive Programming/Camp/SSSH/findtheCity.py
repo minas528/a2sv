@@ -1,42 +1,38 @@
-import collections
-import heapq
-from typing import List
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
 
 
-class Solution:
-    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
-        adjency_matrix = collections.defaultdict(dict)
+#
+# Complete the 'minimumDivisor' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY arr
+#  2. INTEGER threshold
+#
 
-        for node1, node_2, c in edges:
-            adjency_matrix[node1][node_2] = adjency_matrix[node_2][node1] = c
+def minimumDivisor(arr, threshold):
+    # Write your code here
+    summation = sum(arr)
+    if summation < threshold:
+        return 1
+    divisior = 1
+    while summation//divisior > threshold:
 
-        def bfs(s, distanceThreshold):
-            visited = [False] * n
-            dist = [float('inf')] * n
-            frontier = [(0, s)]
-            visited[s] = True
-            dist[s] = 0
-            while not all(visited) and frontier:
-                d, s = heapq.heappop(frontier)
-                if d > distanceThreshold: break
-                dist[s] = d
-                visited[s] = True
-                for t in adjency_matrix[s]:
-                    if not visited[t]:
-                        heapq.heappush(frontier, (d + adjency_matrix[s][t], t))
-            return len([d for d in dist if d <= distanceThreshold])
-
-        res = 0
-        count = n
-        for i in range(n):
-            c = bfs(i, distanceThreshold)
-            if c <= count:
-                res = max(res, i)
-                count = c
-        return res
+        divisior += 1
+    return divisior
 
 
 if __name__ == '__main__':
-    sol = Solution()
-    ans = sol.findTheCity(4, [[0, 1, 3], [1, 2, 1], [1, 3, 4], [2, 3, 1]], 4)
-    print(ans)
+    arr = [32, 305709952, 617901827, 559066417, 846642314, 349430261, 930100012, 425149509, 50710994, 348655290,
+           207497545, 663923396, 873283308, 243509537, 657804153, 547001100, 203492670, 344685642, 808597188, 129005353,
+           142684482, 387013286, 58302119, 216770904, 793436542, 234999067, 471073451, 42602919, 10272918, 326437084,
+           774854236, 544470926, 507360048]
+    threshold = 612271938
+    result = minimumDivisor(arr, threshold)
+    print(result)
